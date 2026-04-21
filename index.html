@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maruthi Dhanalakshmi Chibe — Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #161616;
+    --bg3: #1e1e1e;
+    --accent: #c8f03d;
+    --accent2: #a8d428;
+    --text: #f0ede6;
+    --muted: #8a8880;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: #161616;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.875rem;
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse, rgba(200,240,61,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,240,61,0.1);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(200,240,61,0.2);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0d0d;
+    padding: 0.85rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .avatar-ring {
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 2px solid rgba(200,240,61,0.15);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .avatar-ring::before {
+    content: '';
+    position: absolute; inset: -20px;
+    border-radius: 50%;
+    border: 1px dashed rgba(200,240,61,0.08);
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .avatar-inner {
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e2a0e, #2a3d10);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 4.5rem;
+    color: var(--accent);
+    border: 1px solid rgba(200,240,61,0.2);
+  }
+  .floating-badge {
+    position: absolute;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .badge-1 { top: 20px; right: -10px; }
+  .badge-2 { bottom: 30px; left: -30px; }
+  .badge-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 6px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--muted); max-width: 500px; margin-bottom: 3rem; }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; letter-spacing: 0.05em; }
+
+  /* SKILLS */
+  #skills { background: var(--bg); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .skill-card:hover { border-color: rgba(200,240,61,0.2); transform: translateY(-3px); }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-icon {
+    width: 44px; height: 44px;
+    border-radius: 0.6rem;
+    background: rgba(200,240,61,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(200,240,61,0.12);
+  }
+  .skill-name { font-weight: 600; font-size: 1rem; margin-bottom: 0.3rem; }
+  .skill-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; }
+  .skill-bar { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+  .skill-level { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; display: flex; justify-content: space-between; }
+
+  /* PROJECTS */
+  #projects { background: var(--bg2); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: rgba(200,240,61,0.2); }
+  .project-img {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-img-superstore { background: linear-gradient(135deg, #0a1f0a, #0f2d1a); }
+  .project-img-sql { background: linear-gradient(135deg, #0d0d1f, #0a1020); }
+  .project-img-forage { background: linear-gradient(135deg, #1a0d00, #2d1800); }
+  .project-body { padding: 1.5rem; }
+  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .tag {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.25rem 0.6rem;
+    border-radius: 0.3rem;
+    background: rgba(200,240,61,0.08);
+    color: var(--accent);
+    border: 1px solid rgba(200,240,61,0.12);
+  }
+  .project-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 3rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2.4rem; top: 8px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .timeline-period { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .timeline-role { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .timeline-company { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .timeline-desc { font-size: 0.9rem; color: var(--muted); }
+  .timeline-desc ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+  .timeline-desc li { margin-bottom: 0.3rem; }
+
+  /* EDUCATION */
+  #education { background: var(--bg2); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .edu-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 1rem; padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: rgba(200,240,61,0.15); }
+  .edu-degree { font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; }
+  .edu-school { color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .edu-year { color: var(--muted); font-size: 0.8rem; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+    padding: 8rem 4rem;
+  }
+  #contact .section-title { font-size: clamp(2.5rem, 5vw, 4rem); }
+  #contact .section-sub { margin: 0 auto 3rem; }
+  .contact-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    color: var(--text); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(200,240,61,0.3); background: rgba(200,240,61,0.04); }
+  .contact-link span { font-size: 1.1rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: var(--muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-right { display: none; }
+    section, .stats-bar { padding: 4rem 1.5rem; }
+    .stats-bar { grid-template-columns: repeat(2,1fr); }
+    .edu-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MDC</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Open to Internships · UK Based</div>
+    <h1>Maruthi<br><em>Dhanalakshmi</em><br>Chibe</h1>
+    <p class="hero-desc">Data Analyst with hands-on experience in Excel, SQL, Power BI & Python. MSc Artificial Intelligence student at University of East London, passionate about turning raw data into business insights.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="avatar-ring">
+      <div class="avatar-inner">M</div>
+    </div>
+    <div class="floating-badge badge-1">
+      <span class="badge-dot"></span>Available for Internship
+    </div>
+    <div class="floating-badge badge-2">
+      📍 West Molesey, Surrey, UK
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">4+</div>
+    <div class="stat-label">Data Tools Mastered</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Virtual Internships</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">MSc</div>
+    <div class="stat-label">AI — UEL 2025–27</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">UK</div>
+    <div class="stat-label">Work Authorised</div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Capabilities</div>
+  <h2 class="section-title">Technical Skills</h2>
+  <p class="section-sub">Core toolkit for data analysis, visualisation, and insight delivery.</p>
+  <div class="skills-grid fade-up">
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Microsoft Excel</div>
+      <div class="skill-desc">Pivot tables, VLOOKUP, dashboards, data cleaning and reporting</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      <div class="skill-level"><span>Proficient</span><span>80%</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL</div>
+      <div class="skill-desc">Retail sales analysis, joins, aggregations, subqueries</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      <div class="skill-level"><span>Intermediate</span><span>70%</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📈</div>
+      <div class="skill-name">Power BI</div>
+      <div class="skill-desc">Interactive dashboards, DAX measures, data modelling</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      <div class="skill-level"><span>Intermediate</span><span>70%</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-desc">Pandas, Matplotlib, EDA on Kaggle Notebooks</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      <div class="skill-level"><span>Intermediate</span><span>65%</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔷</div>
+      <div class="skill-name">Tableau</div>
+      <div class="skill-desc">Visual analytics, story building, dashboard design</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      <div class="skill-level"><span>Learning</span><span>55%</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">AI & ML Fundamentals</div>
+      <div class="skill-desc">MSc-level study in artificial intelligence and machine learning</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      <div class="skill-level"><span>In Progress</span><span>60%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Work</div>
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="section-sub">End-to-end data analysis projects demonstrating real-world analytical skills.</p>
+  <div class="projects-grid fade-up">
+    <div class="project-card">
+      <div class="project-img project-img-superstore">🛍️</div>
+      <div class="project-body">
+        <div class="project-tags"><span class="tag">Excel</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span></div>
+        <div class="project-title">Sample Superstore Sales Analysis</div>
+        <div class="project-desc">Full-cycle data analysis on the Kaggle Sample Superstore dataset — covering data cleaning, exploratory analysis, KPI dashboard in Power BI, and SQL queries to surface top products and regions.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img project-img-sql">🗃️</div>
+      <div class="project-body">
+        <div class="project-tags"><span class="tag">SQL</span><span class="tag">SQLiteOnline</span></div>
+        <div class="project-title">SQL Retail Sales Analysis</div>
+        <div class="project-desc">Designed and ran SQL queries on a retail dataset to identify sales trends, customer segments, and revenue patterns. Built entirely in-browser using sqliteonline.com.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img project-img-forage">🎓</div>
+      <div class="project-body">
+        <div class="project-tags"><span class="tag">Quantium</span><span class="tag">Tata</span><span class="tag">Deloitte</span></div>
+        <div class="project-title">Forage Virtual Internships (×3)</div>
+        <div class="project-desc">Completed simulations with Quantium (data analytics), Tata Group (Power BI), and Deloitte (data analytics). Gained experience in commercial analysis, stakeholder-ready reporting, and data storytelling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Journey</div>
+  <h2 class="section-title">Experience</h2>
+  <p class="section-sub">Practical skills built through real-world work and self-directed projects.</p>
+  <div class="timeline fade-up">
+    <div class="timeline-item">
+      <div class="timeline-period">March 2026 – Present</div>
+      <div class="timeline-role">Data Analyst (Project-Based Learning)</div>
+      <div class="timeline-company">Self-Employed · London, UK</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>Built end-to-end data analysis projects across Excel, Python, SQL, and Power BI</li>
+          <li>Completed Forage simulations for Quantium, Tata Group, and Deloitte</li>
+          <li>Developed a Superstore sales dashboard for portfolio and internship applications</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2025 – Present</div>
+      <div class="timeline-role">General Merchandise Assistant</div>
+      <div class="timeline-company">Sainsbury's · UK</div>
+      <div class="timeline-desc">
+        Customer-facing retail role developing communication, teamwork, and attention to detail while studying full-time.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2024 – 2025</div>
+      <div class="timeline-role">BTech Computer Science Graduate</div>
+      <div class="timeline-company">Vijaya Institute of Technology for Women · India</div>
+      <div class="timeline-desc">
+        Developed foundational programming and computing knowledge. Transitioned into data analytics and AI after graduation.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Academic Background</div>
+  <h2 class="section-title">Education</h2>
+  <p class="section-sub">Strong academic foundation across computing and artificial intelligence.</p>
+  <div class="edu-grid fade-up">
+    <div class="edu-card">
+      <div class="edu-degree">MSc Artificial Intelligence</div>
+      <div class="edu-school">University of East London</div>
+      <div class="edu-year">May 2025 – January 2027 · Industrial Placement Programme</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">BTech Computer Science</div>
+      <div class="edu-school">Vijaya Institute of Technology for Women</div>
+      <div class="edu-year">2020 – 2024</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Higher Secondary Education</div>
+      <div class="edu-school">Sri Gayatri Junior College</div>
+      <div class="edu-year">2018 – 2020</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Secondary School Certificate</div>
+      <div class="edu-school">Alpha High School</div>
+      <div class="edu-year">2010 – 2018</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Connect</div>
+  <h2 class="section-title">Open to<br><em style="font-style:italic;color:var(--accent)">Opportunities</em></h2>
+  <p class="section-sub" style="margin:1rem auto 2.5rem">Currently seeking Data Analyst internship roles in the UK. Authorised to work 20 hrs/week as an international student.</p>
+  <div class="contact-links">
+    <a href="mailto:chibemaruthidhanalakshmi@gmail.com" class="contact-link">
+      <span>✉</span> chibemaruthidhanalakshmi@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/maruthidhanalakshmichibe-528a9a341" class="contact-link" target="_blank">
+      <span>🔗</span> LinkedIn Profile
+    </a>
+    <a href="tel:07900228314" class="contact-link">
+      <span>📞</span> 07900 228314
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Maruthi Dhanalakshmi Chibe</span>
+  <span>Built with care · <a href="#contact">chibemaruthidhanalakshmi@gmail.com</a></span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
